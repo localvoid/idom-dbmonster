@@ -6,6 +6,7 @@ var del = require('del');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var sourcemaps = require('gulp-sourcemaps');
+var envify = require('envify/custom');
 var uglify = require('gulp-uglify');
 var browserify = require('browserify');
 var deploy = require('gulp-gh-pages');
@@ -27,6 +28,10 @@ gulp.task('script', function() {
   });
 
   return bundler
+    .transform(envify({
+      _: 'purge',
+      NODE_ENV: NODE_ENV
+    }), {global: true})
     .bundle()
     .pipe(source('main.js'))
     .pipe(buffer())

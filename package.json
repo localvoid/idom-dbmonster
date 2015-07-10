@@ -22,7 +22,8 @@
     "dbmonster"
   ],
   "dependencies": {
-    "incremental-dom": "^0.1.0"
+    "incremental-dom": "^0.1.0",
+    "envify": "~3.4.0"
   },
   "devDependencies": {
     "browser-sync": "^1.9.0",
