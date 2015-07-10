@@ -52,9 +52,15 @@ function elapsedClass(t) {
   return 'Query elapsed short';
 }
 
+var TABLE_STATICS = ['class', 'table table-striped table-latest-data'];
+var DBNAME_STATICS = ['class', 'dbname'];
+var QC_STATICS = ['class', 'query-count'];
+var POPOVER_STATICS = ['class', 'popover left'];
+var POPOVER_CONTENT_STATICS = ['class', 'popover-content'];
+var POPOVER_ARROW_STATICS = ['class', 'arrow'];
+
 function render(dbs) {
-  elementOpen('table', null, null,
-              'class', 'table table-striped table-latest-data');
+  elementOpen('table', null, TABLE_STATICS);
   elementOpen('tbody');
   for (var i = 0; i < dbs.length; i++) {
     var db = dbs[i];
@@ -64,14 +70,12 @@ function render(dbs) {
     elementOpen('tr', db.id);
 
     // name
-    elementOpen('td', null, null,
-                'class', 'dbname');
+    elementOpen('td', null, DBNAME_STATICS);
     text(db.name);
     elementClose('td');
 
     // count
-    elementOpen('td', null, null,
-                'class', 'query-count');
+    elementOpen('td', null, QC_STATICS);
     elementOpen('span', null, null,
                 'class', labelClass(count));
     text(count);
@@ -86,15 +90,12 @@ function render(dbs) {
                   'class', elapsedClass(elapsed));
       text(formatElapsed(elapsed));
 
-      elementOpen('div', null, null,
-                  'class', 'popover left');
-      elementOpen('div', null, null,
-                  'class', 'popover-content');
+      elementOpen('div', null, POPOVER_STATICS);
+      elementOpen('div', null, POPOVER_CONTENT_STATICS);
       text(q.query);
       elementClose('div');
 
-      elementOpen('div', null, null,
-                  'class', 'arrow');
+      elementOpen('div', null, POPOVER_ARROW_STATICS);
       elementClose('div');
       elementClose('div');
 
